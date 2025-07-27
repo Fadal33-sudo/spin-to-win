@@ -1,0 +1,147 @@
+🎰 Spin to Earn App – Jetpack Compose (Kotlin) Offline App
+1. Welcome Screen:
+Soo bandhig screen soo dhaweyn ah markay app-ka furanto markii ugu horreysay.
+
+Bixi fursado kala ah: Bilow Ciyaarta, Abuur Account (ama Player), ama Soo Celinta Diiwaan hore (restore progress).
+
+2. Home Dashboard:
+Navigation bar u gaar ah qeybaha kala ah:
+
+🎡 Spin Game
+
+💰 My Wallet
+
+⭐ Rewards
+
+🗑️ Trash History
+
+⚙️ Settings
+
+Falal degdeg ah:
+
+Bilow Spin cusub.
+
+Raadi Rewards.
+
+Bedel View Mode (grid/list).
+
+3. Spin Management:
+Isticmaaluhu wuxuu:
+
+Ku wareegsan karaa wheel of fortune (spin).
+
+Ku guuleysan karaa coins, points, ama rewards kala duwan.
+
+Waxaa la duubaa waqtiga spin kasta (timestamp).
+
+Waxaa lagu dari karaa Daily Limits ama Cooldown Timer.
+
+Spin muhiim ah ama guuleed (jackpot) waa lagu Pin garayn karaa.
+
+Spin guuldarro ama aan la rabin waxaa lagu diri karaa Trash halkii si joogto ah loo tirtiri lahaa.
+
+Waxaa la soo celin karaa Spin history ama si rasmi ah loo tirtiri karaa.
+
+4. Viewing & Filtering:
+Spin result-yada waxaa lagu daawan karaa:
+
+List view ama Grid view.
+
+Filter by: guulaha ugu waaweyn, maalinta/taariikhda, favorited, ama pinned.
+
+Search ku saleysan guul, nooca reward, ama waqtiga spin.
+
+5. Categories:
+Spin/Rewards waxaa loo kala saari karaa Qeybo gaar ah (categories):
+
+Coins
+
+Vouchers
+
+Lucky Items
+
+Categories waa la abuuri karaa, la beddeli karaa magaca, ama la tirtiri karaa.
+
+6. Settings:
+Bedel mowduuca app-ka: Light, Dark, ama System Default.
+
+Bedel:
+
+Font-ka
+
+Cabirka qoraalka
+
+Line spacing
+
+Text alignment
+
+Enable/Disable animations.
+
+Reset App: Clear all data (spins, rewards, settings).
+
+Backup: Diiwaanka spins & wallet waxa lagu keydin karaa JSON file gudaha phone-ka.
+
+Restore: Dib uga soo celin backup-kii hore.
+
+7. Security (Ikhtiyaari):
+App-ku wuxuu awood u leeyahay:
+
+In la lock garayn karo spins ama wallet (Password/Fingerprint).
+
+In la qarsho guulo ama lacagaha si aan loo arkin ilaa la furo.
+
+8. Export & Share:
+Share guulahaada adigoo adeegsanaya:
+
+Email
+
+Apps sida WhatsApp, Telegram
+
+Export ku samee:
+
+.txt ama .pdf format
+
+Ku daabac Spin history ama guulaha si toos ah (print support).
+
+9. Local Storage:
+App-kan waxa uu si buuxda ugu shaqeeyaa offline.
+
+Dhammaan xogta (spin history, rewards, wallet) waxa lagu kaydiyaa Room Database.
+
+10. UI Design:
+Ku dhisan Material 3.
+
+Interface nadiif ah, distraction-free.
+
+FAB (Floating Action Button) loogu talagalay bilaabidda Spin cusub.
+
+Adaptive layout u shaqaynaya si fiican phones & tablets.
+
+11. Navigation:
+Isticmaal Jetpack Compose Navigation.
+
+Waxaa loo kala qaybiyay screens:
+
+Welcome
+
+Home
+
+Spin
+
+Wallet
+
+Rewards
+
+Trash
+
+Settings
+
+12. Advanced Features (Mustaqbalka):
+Speech Input: Si aad cod ugu bilowdo Spin.
+
+Cloud Sync: La jaanqaad Google Drive / Dropbox.
+
+Reminders: Maalin kasta ku xasuusi inaad Spin sameyso.
+
+Markdown or Rich UI Support: Marka lagu sharxayo guulo ama rewards.
+
