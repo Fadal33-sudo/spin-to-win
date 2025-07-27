@@ -19,6 +19,31 @@ document.addEventListener('DOMContentLoaded', function() {
     loadGameState();
     updateUI();
     setInterval(updateCooldown, 1000);
+    
+    // Register service worker for PWA
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+                console.log('Service Worker registered:', registration);
+            })
+            .catch(function(error) {
+                console.log('Service Worker registration failed:', error);
+            });
+    }
+    
+    // PWA install prompt
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        showInstallButton();
+    });
+    
+    // Check if app is already installed
+    window.addEventListener('appinstalled', (evt) => {
+        hideInstallButton();
+        alert('App-ka waa la install garay! 🎉');
+    });
 });
 
 // Welcome Screen Functions
@@ -85,6 +110,40 @@ function shareApp() {
         document.execCommand('copy');
         document.body.removeChild(textArea);
         alert('Share link-ka ayaa la copy garay!');
+    }
+}
+
+// PWA Install Functions
+let deferredPrompt;
+
+function showInstallButton() {
+    const installBtn = document.createElement('button');
+    installBtn.id = 'install-btn';
+    installBtn.className = 'dash-btn install-btn';
+    installBtn.innerHTML = '📱 Install App';
+    installBtn.onclick = installPWA;
+    
+    const buttonsContainer = document.querySelector('.dashboard-buttons');
+    buttonsContainer.insertBefore(installBtn, buttonsContainer.firstChild);
+}
+
+function hideInstallButton() {
+    const installBtn = document.getElementById('install-btn');
+    if (installBtn) {
+        installBtn.remove();
+    }
+}
+
+function installPWA() {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the install prompt');
+                hideInstallButton();
+            }
+            deferredPrompt = null;
+        });
     }
 }
 

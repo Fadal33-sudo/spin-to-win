@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="so">
 <head>
@@ -7,6 +6,18 @@
     <title>Spin to Win - App-ka Guusha</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ff6b6b">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="SpinWin">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3106/3106787.png">
+
+    <!-- Mobile optimizations -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="SpinWin">
 </head>
 <body>
     <!-- Welcome Screen -->
@@ -19,7 +30,7 @@
                     <span id="welcome-balance">1479</span>
                 </div>
             </div>
-            
+
             <div class="dashboard-buttons">
                 <button class="dash-btn spin-btn" onclick="startGame()">
                     Spin
@@ -115,7 +126,7 @@
                     <div class="wallet-header">
                         <h2>Wallet</h2>
                     </div>
-                    
+
                     <!-- Balance Card -->
                     <div class="wallet-card">
                         <div class="card-header">
@@ -208,7 +219,7 @@
             <div id="settings-tab" class="tab-content">
                 <div class="settings-container">
                     <h2>⚙️ Settings</h2>
-                    
+
                     <div class="settings-section">
                         <h3>Theme Settings</h3>
                         <div class="setting-item">
