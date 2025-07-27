@@ -1,3 +1,15 @@
 modules = ["nodejs-24", "nodejs-14", "nodejs-18", "python-3.9", "swift-5.8"]
 [nix]
 channel = "stable-25_05"
+
+[workflows]
+runButton = "Start App"
+
+[[workflows.workflow]]
+name = "Start App"
+author = 43313305
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python -m http.server 5000"

@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html lang="so">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spin to Win - App-ka Guusha</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="screen active">
+        <div class="welcome-container">
+            <h1>🎰 Spin to Win</h1>
+            <p>Ku soo dhaweyn app-ka guusha!</p>
+            <div class="welcome-buttons">
+                <button class="btn-primary" onclick="startGame()">
+                    <i class="fas fa-play"></i> Bilow Ciyaarta
+                </button>
+                <button class="btn-secondary" onclick="createAccount()">
+                    <i class="fas fa-user-plus"></i> Abuur Account
+                </button>
+                <button class="btn-secondary" onclick="restoreProgress()">
+                    <i class="fas fa-history"></i> Soo Celi Progress
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App Screen -->
+    <div id="main-screen" class="screen">
+        <!-- Header -->
+        <header class="app-header">
+            <h1>🎰 Spin to Win</h1>
+            <div class="balance">
+                <span>💰 <span id="balance">1000</span> Coins</span>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav-bar">
+            <button class="nav-btn active" data-tab="spin" onclick="showTab('spin')">
+                <i class="fas fa-sync-alt"></i>
+                <span>Spin Game</span>
+            </button>
+            <button class="nav-btn" data-tab="wallet" onclick="showTab('wallet')">
+                <i class="fas fa-wallet"></i>
+                <span>My Wallet</span>
+            </button>
+            <button class="nav-btn" data-tab="rewards" onclick="showTab('rewards')">
+                <i class="fas fa-star"></i>
+                <span>Rewards</span>
+            </button>
+            <button class="nav-btn" data-tab="trash" onclick="showTab('trash')">
+                <i class="fas fa-trash"></i>
+                <span>Trash</span>
+            </button>
+            <button class="nav-btn" data-tab="settings" onclick="showTab('settings')">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </button>
+        </nav>
+
+        <!-- Content Tabs -->
+        <main class="main-content">
+            <!-- Spin Game Tab -->
+            <div id="spin-tab" class="tab-content active">
+                <div class="spin-container">
+                    <div class="wheel-container">
+                        <div class="wheel" id="wheel">
+                            <div class="wheel-section" data-reward="100">100 Coins</div>
+                            <div class="wheel-section" data-reward="50">50 Coins</div>
+                            <div class="wheel-section" data-reward="200">200 Coins</div>
+                            <div class="wheel-section" data-reward="10">10 Coins</div>
+                            <div class="wheel-section" data-reward="500">JACKPOT!</div>
+                            <div class="wheel-section" data-reward="25">25 Coins</div>
+                            <div class="wheel-section" data-reward="75">75 Coins</div>
+                            <div class="wheel-section" data-reward="0">Try Again</div>
+                        </div>
+                        <div class="wheel-pointer"></div>
+                    </div>
+                    <div class="spin-controls">
+                        <button id="spin-btn" class="spin-button" onclick="spinWheel()">
+                            <i class="fas fa-sync-alt"></i>
+                            SPIN (50 Coins)
+                        </button>
+                        <div class="spin-info">
+                            <p>Spins ku hadhay maanta: <span id="daily-spins">10</span></p>
+                            <p>Cooldown: <span id="cooldown-timer">0</span>s</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="recent-spins">
+                    <h3>Spin History-ga Ugu Dambeysay</h3>
+                    <div id="recent-spins-list"></div>
+                </div>
+            </div>
+
+            <!-- Wallet Tab -->
+            <div id="wallet-tab" class="tab-content">
+                <div class="wallet-container">
+                    <div class="wallet-summary">
+                        <h2>💰 My Wallet</h2>
+                        <div class="balance-card">
+                            <h3>Total Balance</h3>
+                            <p class="big-balance"><span id="wallet-balance">1000</span> Coins</p>
+                        </div>
+                    </div>
+                    <div class="wallet-history">
+                        <h3>Transaction History</h3>
+                        <div class="view-controls">
+                            <button class="view-btn active" onclick="setWalletView('list')">
+                                <i class="fas fa-list"></i> List
+                            </button>
+                            <button class="view-btn" onclick="setWalletView('grid')">
+                                <i class="fas fa-th"></i> Grid
+                            </button>
+                        </div>
+                        <div id="wallet-transactions" class="transactions-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rewards Tab -->
+            <div id="rewards-tab" class="tab-content">
+                <div class="rewards-container">
+                    <h2>⭐ Rewards</h2>
+                    <div class="rewards-categories">
+                        <button class="category-btn active" data-category="all" onclick="filterRewards('all')">All</button>
+                        <button class="category-btn" data-category="coins" onclick="filterRewards('coins')">Coins</button>
+                        <button class="category-btn" data-category="vouchers" onclick="filterRewards('vouchers')">Vouchers</button>
+                        <button class="category-btn" data-category="lucky" onclick="filterRewards('lucky')">Lucky Items</button>
+                    </div>
+                    <div class="rewards-search">
+                        <input type="text" id="rewards-search" placeholder="Raadi rewards..." onkeyup="searchRewards()">
+                    </div>
+                    <div id="rewards-list" class="rewards-grid"></div>
+                </div>
+            </div>
+
+            <!-- Trash Tab -->
+            <div id="trash-tab" class="tab-content">
+                <div class="trash-container">
+                    <h2>🗑️ Trash History</h2>
+                    <div class="trash-controls">
+                        <button class="btn-danger" onclick="clearTrash()">
+                            <i class="fas fa-trash-alt"></i> Clear All Trash
+                        </button>
+                    </div>
+                    <div id="trash-list" class="trash-items"></div>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="settings-tab" class="tab-content">
+                <div class="settings-container">
+                    <h2>⚙️ Settings</h2>
+                    
+                    <div class="settings-section">
+                        <h3>Theme Settings</h3>
+                        <div class="setting-item">
+                            <label>Theme:</label>
+                            <select id="theme-select" onchange="changeTheme()">
+                                <option value="light">Light</option>
+                                <option value="dark">Dark</option>
+                                <option value="auto">System Default</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Text Settings</h3>
+                        <div class="setting-item">
+                            <label>Font Size:</label>
+                            <input type="range" id="font-size" min="12" max="20" value="16" onchange="changeFontSize()">
+                        </div>
+                        <div class="setting-item">
+                            <label>Animations:</label>
+                            <input type="checkbox" id="animations" checked onchange="toggleAnimations()">
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Data Management</h3>
+                        <button class="btn-secondary" onclick="backupData()">
+                            <i class="fas fa-download"></i> Backup Data
+                        </button>
+                        <button class="btn-secondary" onclick="restoreData()">
+                            <i class="fas fa-upload"></i> Restore Data
+                        </button>
+                        <button class="btn-danger" onclick="resetApp()">
+                            <i class="fas fa-exclamation-triangle"></i> Reset App
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Floating Action Button -->
+        <button class="fab" onclick="quickSpin()" title="Quick Spin">
+            <i class="fas fa-sync-alt"></i>
+        </button>
+    </div>
+
+    <!-- Modals -->
+    <div id="result-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="result-content"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
