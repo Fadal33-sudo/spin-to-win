@@ -63,6 +63,35 @@ function restoreProgress() {
     input.click();
 }
 
+// Dashboard Functions
+function showPrivacyPolicy() {
+    alert('Privacy Policy: Waxaan ilaalinaynaa xogahaaga shakhsi ahaaneed. Ma la wadaagno qof kale oo aan ahayn kuwa la ogol yahay.');
+}
+
+function shareApp() {
+    const shareText = 'Ku soo biir Spin to Win app-ka oo ka guulayso lacag dhabta ah! 🎰💰';
+    
+    if (navigator.share) {
+        navigator.share({
+            title: 'Spin to Win - Real Cash App',
+            text: shareText,
+            url: window.location.href
+        });
+    } else {
+        const textArea = document.createElement('textarea');
+        textArea.value = shareText + ' ' + window.location.href;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        alert('Share link-ka ayaa la copy garay!');
+    }
+}
+
+function rateApp() {
+    alert('Mahadsanid! Fadlan na qiimee 5 xiddigood app store-ka! ⭐⭐⭐⭐⭐');
+}
+
 // Screen Management
 function showScreen(screenId) {
     document.querySelectorAll('.screen').forEach(screen => {
@@ -596,6 +625,12 @@ function updateUI() {
     // Update balance displays
     document.getElementById('balance').textContent = gameState.balance;
     document.getElementById('wallet-balance').textContent = gameState.balance;
+    
+    // Update welcome screen balance if it exists
+    const welcomeBalance = document.getElementById('welcome-balance');
+    if (welcomeBalance) {
+        welcomeBalance.textContent = gameState.balance;
+    }
     
     // Update daily spins
     document.getElementById('daily-spins').textContent = gameState.dailySpins;

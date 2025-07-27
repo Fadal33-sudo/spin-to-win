@@ -11,18 +11,30 @@
 <body>
     <!-- Welcome Screen -->
     <div id="welcome-screen" class="screen active">
-        <div class="welcome-container">
-            <h1>🎰 Spin to Win</h1>
-            <p>Ku soo dhaweyn app-ka guusha!</p>
-            <div class="welcome-buttons">
-                <button class="btn-primary" onclick="startGame()">
-                    <i class="fas fa-play"></i> Bilow Ciyaarta
+        <div class="dashboard-container">
+            <div class="dashboard-header">
+                <h1>Spin To Win Real Cash</h1>
+                <div class="coins-display">
+                    <span class="coin-icon">🪙</span>
+                    <span id="welcome-balance">1479</span>
+                </div>
+            </div>
+            
+            <div class="dashboard-buttons">
+                <button class="dash-btn spin-btn" onclick="startGame()">
+                    Spin
                 </button>
-                <button class="btn-secondary" onclick="createAccount()">
-                    <i class="fas fa-user-plus"></i> Abuur Account
+                <button class="dash-btn redeem-btn" onclick="showTab('wallet'); startGame();">
+                    Redeem
                 </button>
-                <button class="btn-secondary" onclick="restoreProgress()">
-                    <i class="fas fa-history"></i> Soo Celi Progress
+                <button class="dash-btn privacy-btn" onclick="showPrivacyPolicy()">
+                    Privacy Policy
+                </button>
+                <button class="dash-btn share-btn" onclick="shareApp()">
+                    Share App
+                </button>
+                <button class="dash-btn rate-btn" onclick="rateApp()">
+                    Rate Us
                 </button>
             </div>
         </div>
