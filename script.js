@@ -235,28 +235,66 @@ function updateCooldown() {
 
 // Wallet Functions
 function updateWalletTab() {
-    const transactionsList = document.getElementById('wallet-transactions');
-    let transactionsHTML = '';
+    // Update balance display
+    document.getElementById('wallet-balance').textContent = gameState.balance;
     
-    gameState.spinHistory.forEach(spin => {
-        const isPositive = spin.reward > 0;
-        transactionsHTML += `
-            <div class="list-item">
-                <div class="item-icon" style="background-color: ${isPositive ? '#4CAF50' : '#FF5722'}">
-                    <i class="fas ${isPositive ? 'fa-plus' : 'fa-minus'}"></i>
-                </div>
-                <div class="item-details">
-                    <div class="item-title">${spin.description}</div>
-                    <div class="item-subtitle">${formatDate(spin.timestamp)}</div>
-                </div>
-                <div class="item-value ${isPositive ? 'positive' : 'negative'}">
-                    ${isPositive ? '+' : ''}${spin.reward} Coins
-                </div>
-            </div>
-        `;
+    // Add event listeners for payment methods
+    document.querySelectorAll('.payment-method').forEach(method => {
+        method.addEventListener('click', function() {
+            document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+            this.classList.add('selected');
+            const methodName = this.querySelector('span').textContent;
+            document.querySelector('.payment-input').value = methodName;
+        });
     });
     
-    transactionsList.innerHTML = transactionsHTML || '<p>Wali ma jiraan transactions!</p>';
+    // Add event listeners for amount buttons
+    document.querySelectorAll('.amount-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
+            this.classList.add('selected');
+        });
+    });
+    
+    // Add withdraw button functionality
+    document.querySelector('.withdraw-btn').addEventListener('click', function() {
+        const selectedAmount = document.querySelector('.amount-btn.selected');
+        const selectedMethod = document.querySelector('.payment-method.selected');
+        
+        if (!selectedAmount) {
+            alert('Fadlan dooro amount!');
+            return;
+        }
+        
+        if (!selectedMethod) {
+            alert('Fadlan dooro payment method!');
+            return;
+        }
+        
+        const amount = parseInt(selectedAmount.dataset.amount) * 10; // Convert to coins
+        
+        if (gameState.balance < amount) {
+            alert('Ma haysid lacag ku filan withdraw-ka!');
+            return;
+        }
+        
+        gameState.balance -= amount;
+        saveGameState();
+        updateUI();
+        alert(`Guul leh! $${selectedAmount.dataset.amount} ayaa lagu withdraw gareysay ${selectedMethod.querySelector('span').textContent}!`);
+        
+        // Reset selections
+        document.querySelectorAll('.amount-btn, .payment-method').forEach(el => el.classList.remove('selected'));
+        document.querySelector('.payment-input').value = '';
+    });
+    
+    // Add claim button functionality
+    document.querySelector('.claim-btn').addEventListener('click', function() {
+        gameState.balance += 500; // Add $50 worth of coins
+        saveGameState();
+        updateUI();
+        alert('Guul! $50 ayaa lagu daray wallet-kaaga!');
+    });
 }
 
 function setWalletView(viewType) {

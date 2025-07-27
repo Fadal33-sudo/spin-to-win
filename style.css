@@ -303,24 +303,194 @@ body {
 
 /* Wallet */
 .wallet-container {
-    max-width: 800px;
+    max-width: 400px;
     margin: 0 auto;
+    padding: 1rem;
 }
 
-.balance-card {
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    color: white;
-    padding: 2rem;
-    border-radius: 15px;
-    text-align: center;
-    margin-bottom: 2rem;
-    box-shadow: var(--shadow);
-}
-
-.big-balance {
-    font-size: 2.5rem;
+.wallet-header h2 {
+    font-size: 1.8rem;
     font-weight: bold;
-    margin-top: 0.5rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.wallet-card {
+    background: linear-gradient(135deg, #00C851, #FF5722);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: white;
+    position: relative;
+    box-shadow: 0 8px 25px rgba(0, 200, 81, 0.3);
+}
+
+.card-header {
+    margin-bottom: 0.5rem;
+}
+
+.coins-label {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.card-balance {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.payment-section {
+    margin-bottom: 1.5rem;
+}
+
+.payment-section h3 {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.payment-methods {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.payment-method {
+    background-color: var(--card-background);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.payment-method:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.payment-method img {
+    width: 40px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.payment-method span {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.amount-section {
+    margin-bottom: 1.5rem;
+}
+
+.amount-section h3 {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.amount-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.amount-btn {
+    background-color: var(--card-background);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.amount-btn:hover {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.amount-btn.selected {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.payment-input-section {
+    margin-bottom: 1.5rem;
+}
+
+.payment-input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--card-background);
+    color: var(--text-color);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.withdraw-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #00C851, #4CAF50);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.withdraw-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 200, 81, 0.4);
+}
+
+.claim-section {
+    margin-top: 1rem;
+}
+
+.claim-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #007BFF, #0056b3);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.claim-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
 }
 
 .view-controls {

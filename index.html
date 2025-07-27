@@ -100,24 +100,64 @@
             <!-- Wallet Tab -->
             <div id="wallet-tab" class="tab-content">
                 <div class="wallet-container">
-                    <div class="wallet-summary">
-                        <h2>💰 My Wallet</h2>
-                        <div class="balance-card">
-                            <h3>Total Balance</h3>
-                            <p class="big-balance"><span id="wallet-balance">1000</span> Coins</p>
+                    <div class="wallet-header">
+                        <h2>Wallet</h2>
+                    </div>
+                    
+                    <!-- Balance Card -->
+                    <div class="wallet-card">
+                        <div class="card-header">
+                            <span class="coins-label">Coins</span>
+                        </div>
+                        <div class="card-balance">
+                            <span id="wallet-balance">200</span>
+                        </div>
+                        <div class="card-footer">
+                            <span class="card-holder">Barkhadjamac</span>
+                            <span class="card-number">100000 - $10</span>
                         </div>
                     </div>
-                    <div class="wallet-history">
-                        <h3>Transaction History</h3>
-                        <div class="view-controls">
-                            <button class="view-btn active" onclick="setWalletView('list')">
-                                <i class="fas fa-list"></i> List
-                            </button>
-                            <button class="view-btn" onclick="setWalletView('grid')">
-                                <i class="fas fa-th"></i> Grid
-                            </button>
+
+                    <!-- Payment Methods -->
+                    <div class="payment-section">
+                        <h3>Select Payment Method</h3>
+                        <div class="payment-methods">
+                            <div class="payment-method">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCA0MCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjI0IiByeD0iNCIgZmlsbD0iIzAwN0NGRiIvPgo8dGV4dCB4PSI1IiB5PSIxNiIgZm9udC1zaXplPSIxMCIgZmlsbD0id2hpdGUiPiNQSTwvdGV4dD4KPC9zdmc+" alt="UPI">
+                                <span>UPI</span>
+                            </div>
+                            <div class="payment-method">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCA0MCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjI0IiByeD0iNCIgZmlsbD0iIzAwMzA4NyIvPgo8dGV4dCB4PSI1IiB5PSIxNiIgZm9udC1zaXplPSI4IiBmaWxsPSJ3aGl0ZSI+UGF5UGFsPC90ZXh0Pgo8L3N2Zz4=" alt="PayPal">
+                                <span>PayPal</span>
+                            </div>
                         </div>
-                        <div id="wallet-transactions" class="transactions-list"></div>
+                    </div>
+
+                    <!-- Amount Selection -->
+                    <div class="amount-section">
+                        <h3>Select Amount</h3>
+                        <div class="amount-grid">
+                            <button class="amount-btn" data-amount="10">$10</button>
+                            <button class="amount-btn" data-amount="20">$20</button>
+                            <button class="amount-btn" data-amount="30">$30</button>
+                            <button class="amount-btn" data-amount="40">$40</button>
+                        </div>
+                    </div>
+
+                    <!-- Payment Input -->
+                    <div class="payment-input-section">
+                        <input type="text" class="payment-input" placeholder="Select Payment Method" readonly>
+                    </div>
+
+                    <!-- Withdraw Button -->
+                    <button class="withdraw-btn">Withdraw</button>
+
+                    <!-- Claim Button -->
+                    <div class="claim-section">
+                        <button class="claim-btn">
+                            <i class="fas fa-hand-point-up"></i>
+                            CLICK TO CLAIM $50
+                        </button>
                     </div>
                 </div>
             </div>
