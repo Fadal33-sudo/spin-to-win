@@ -271,17 +271,25 @@ function updateWalletTab() {
             return;
         }
         
-        const amount = parseInt(selectedAmount.dataset.amount) * 10; // Convert to coins
+        const dollarAmount = parseInt(selectedAmount.dataset.amount);
+        const amount = dollarAmount * 10; // Convert to coins
         
+        // Check if user has enough coins
         if (gameState.balance < amount) {
             alert('Ma haysid lacag ku filan withdraw-ka!');
+            return;
+        }
+        
+        // Check minimum coins requirement for $30
+        if (dollarAmount >= 30 && gameState.balance < 300000) {
+            alert('Waxaad u baahan tahay ugu yaraan 300,000 coins si aad $30 ama ka badan u withdraw gareeyso!');
             return;
         }
         
         gameState.balance -= amount;
         saveGameState();
         updateUI();
-        alert(`Guul leh! $${selectedAmount.dataset.amount} ayaa lagu withdraw gareysay ${selectedMethod.querySelector('span').textContent}!`);
+        alert(`Guul leh! $${dollarAmount} ayaa lagu withdraw gareysay ${selectedMethod.querySelector('span').textContent}!`);
         
         // Reset selections
         document.querySelectorAll('.amount-btn, .payment-method').forEach(el => el.classList.remove('selected'));
